@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>My Tasks</h2>
+<a href="{{ url_for('tasks.new_task') }}">Create New Task</a>
+<ul>
+    {% for task in tasks %}
+        <li>
+            <a href="{{ url_for('tasks.edit_task', task_id=task.id) }}">{{ task.title }}</a>
+            <form method="POST" action="{{ url_for('tasks.delete_task', task_id=task.id) }}">
+                <input type="submit" value="Delete">
+            </form>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
